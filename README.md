@@ -24,11 +24,32 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Code Challenge - Backend
 
+## Requirements
+
+```bash	
+- Node.js
+- NPM
+- Docker
+- Docker Compose
+- Google Oauth2 Client ID and Secret
+```
+
+## Setup
+
+```bash
+- Create a .env file in the root directory
+- Add:
+-DATABASE_URL="mongodb://root:prisma@localhost:27017/prisma-mongo?authSource=admin&retryWrites=true&w=majority"
+-REFRESH_TOKEN_SECRET="any random string"
+-GOOGLE_CLIENT_ID="your google client id"
+-GOOGLE_CLIENT_SECRET="your google client secret"
+```
 ## Installation
 
 ```bash
+$ docker-compose up --build -d
 $ npm install
 ```
 
