@@ -51,6 +51,8 @@ Code Challenge - Backend
 ```bash
 $ docker-compose up --build -d
 $ npm install
+$ npx prisma generate
+$ npx prisma db push
 ```
 
 ## Running the app
