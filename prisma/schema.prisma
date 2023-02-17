@@ -1,0 +1,50 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(auto()) @db.ObjectId @map("_id")
+  email        String       @unique
+  provider     String
+  firstName    String?      
+  lastName     String?
+  picture      String?
+  refreshToken String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  deletedAt    DateTime?
+  rentals      Rental[]
+}
+
+model Book {
+  id        String   @id @default(auto()) @db.ObjectId @map("_id")
+  title     String
+  author    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  rentals      Rental[]
+}
+
+model Rental {
+  id           String   @id @default(auto()) @db.ObjectId @map("_id")
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @db.ObjectId
+  book         Book     @relation(fields: [bookId], references: [id])
+  bookId       String   @db.ObjectId
+  rentedAt     DateTime @default(now())
+  dueDate      DateTime
+  returnedAt   DateTime? 
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+}
+
+
